@@ -1,9 +1,10 @@
-interface Button {
+export interface ButtonProps {
     btnClass: string;
     title: string;
+    onClick: ()=>void;
 }
 
-interface GithubAuth {
+export interface GithubAuth {
     clientId: string;
     clientSecret: string;
 }

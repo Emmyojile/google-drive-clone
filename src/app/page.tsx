@@ -1,3 +1,6 @@
+"use client"
+import Button from "@/components/common/Button/Button";
+import { signIn } from "next-auth/react";
 import Link from "next/link";
 
 export default function HomePage() {
@@ -7,7 +10,12 @@ export default function HomePage() {
         <h1 className="text-5xl font-extrabold tracking-tight text-white sm:text-[5rem]">
           Create <span className="text-[hsl(280,100%,70%)]">T3</span> App
         </h1>
-        <button className="btn btn-primary">Button</button>
+        <Button 
+        onClick={() => signIn()}
+        btnClass="btn-primary"
+        title="Sign Up!"
+        />
+        {/* <button className="btn btn-primary">Button</button> */}
       </div>
     </main>
   );
