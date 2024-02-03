@@ -1,9 +1,12 @@
 "use client"
 import Button from "@/components/common/Button/Button";
-import { signIn } from "next-auth/react";
-import Link from "next/link";
+import { signIn, useSession } from "next-auth/react";
 
 export default function HomePage() {
+  const {data: session} = useSession();
+
+  console.log(session);
+  
   return (
     <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white">
       <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
@@ -13,7 +16,7 @@ export default function HomePage() {
         <Button 
         onClick={() => signIn()}
         btnClass="btn-primary"
-        title="Sign Up!"
+        title="Sign Up!!!"
         />
         {/* <button className="btn btn-primary">Button</button> */}
       </div>
