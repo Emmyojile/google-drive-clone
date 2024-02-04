@@ -1,11 +1,10 @@
-import React from "react";
 import { useFetchSession } from "@/hooks/useSesion";
 import { signIn, signOut } from "next-auth/react";
 import Button from "../common/Button/Button";
 import styles from "./Home.module.scss";
 
 const Home = () => {
-  let { session } = useFetchSession();
+  let {session}  = useFetchSession();
   return (
     <div className={styles.authBtn}>
       {session ? (
