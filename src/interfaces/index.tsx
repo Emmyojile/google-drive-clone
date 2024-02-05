@@ -1,9 +1,9 @@
 
 
 export interface ButtonProps {
-    btnClass: string;
+    btnClass?: string;
     title: string;
-    onClick: ()=>void;
+    onClick?: ()=>void;
 }
 
 export interface GithubAuthProps {

@@ -22,7 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <AuthProvider>
-        <body className={`font-sans ${inter.variable}`}>{children}</body>
+        <body className={`font-sans ${inter.variable} `}>{children}</body>
       </AuthProvider>
     </html>
   );
