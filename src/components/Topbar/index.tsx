@@ -12,6 +12,7 @@ const Topbar = () => {
           onClick={() => signOut()}
           className={styles.profileImg}
           src={session?.user.image as string}
+          alt="Profile Picture"
         />
       ) : (
         <Button
