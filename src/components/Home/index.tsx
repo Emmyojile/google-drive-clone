@@ -4,6 +4,7 @@ import { useFetchSession } from "@/hooks/useSesion";
 import styles from "./Home.module.scss";
 import { UploadFiles } from "../UploadFiles";
 import Topbar from "../Topbar";
+import ShowFiles from "../ShowFiles";
 
 const Home = () => {
   let { session } = useFetchSession();
@@ -11,6 +12,7 @@ const Home = () => {
     <div className={styles.container}>
       <Topbar />
       <UploadFiles />
+      <ShowFiles/>
     </div>
     // <div className={styles.authBtn}>
     //   {session ? (
