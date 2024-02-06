@@ -6,10 +6,23 @@ await import("./src/env.js");
 
 /** @type {import("next").NextConfig} */
 const config = {
-    reactStrictMode: true,
-    images:{
-        domains: ["cdn.imagin.studio","localhost"]
-    }
+  reactStrictMode: true,
+  headers() {
+    return Promise.resolve([
+      {
+        source: "/api/:path*",
+        headers: [
+          {
+            key: "Access-Control-Allow-Origin",
+            value: "http://localhost:3000",
+          },
+        ],
+      },
+    ]);
+  },
+  images: {
+    domains: ["cdn.imagin.studio", "localhost"],
+  },
 };
 
 export default config;
