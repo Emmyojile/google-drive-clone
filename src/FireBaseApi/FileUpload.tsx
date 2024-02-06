@@ -21,29 +21,19 @@
 //     )
 // }
 import { storage } from "@/firebaseConfig";
-import { ref, getDownloadURL, uploadBytesResumable, cors } from "firebase/storage";
+import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
+import { addFiles } from "./Firestore";
 
-export const fileUpload = (file: any) => {
+export const fileUpload = (file: any, setProgress: Function) => {
   const storageRef = ref(storage, `files/${file.name}`);
 
   const uploadTask = uploadBytesResumable(storageRef, file, {
     contentType: file.type,
     customMetadata: {
-      // Optional metadata
-    },
-    resumable: false, // Adjust this if needed
-    onUploadProgress: (snapshot) => {
-      // ... your progress handling
-    },
-    metadata: {
-      // Optional metadata
-    },
-    gzip: true, // Optional compression
-    cors: cors({
       origin: "http://localhost:3000",
       method: "POST",
-      maxAge: 3600,
-    }),
+      maxAge: "3600",
+    },
   });
 
   uploadTask.on(
@@ -52,14 +42,14 @@ export const fileUpload = (file: any) => {
       const progress = Math.round(
         (snapshot.bytesTransferred / snapshot.totalBytes) * 100
       );
-      console.log(progress);
+      setProgress(progress);
     },
     (error) => {
       alert(error);
     },
     () => {
       getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-        console.log(downloadURL);
+        addFiles(downloadURL);
       });
     }
   );

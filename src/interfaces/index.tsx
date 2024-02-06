@@ -10,3 +10,7 @@ export interface GithubAuthProps {
     clientId: string;
     clientSecret: string;
 }
+
+export interface ProgressProps {
+    progress: number;
+}

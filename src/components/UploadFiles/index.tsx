@@ -3,13 +3,15 @@ import React, { ChangeEvent, useState } from "react";
 import styles from "./Upload.module.scss";
 import Button from "../common/Button/Button";
 import { fileUpload } from "@/FireBaseApi/FileUpload";
+import ProgressBar from "../ProgressBar";
 
 export const UploadFiles = () => {
   const [isFileVisible, setIsFileVisible] = useState(false);
   const [file, setFile] = useState({});
+  const [progress, setProgress] = useState(0);
   const uploadFile = (event: ChangeEvent<HTMLInputElement>) => {
     let file = event.target.files?.[0];
-    fileUpload(file);
+    fileUpload(file, setProgress);
   };
   return (
     <div className={styles.uploadMain}>
@@ -26,6 +28,12 @@ export const UploadFiles = () => {
         />
       )}
       <Button title="Create a Folder" btnClass="btn-primary" />
+      {progress === 0 || progress === 100 ? (
+        <></>
+      ) : (
+        <ProgressBar progress={progress} />
+      )}
+      {/* <ProgressBar/> */}
     </div>
   );
 };
